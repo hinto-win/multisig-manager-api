@@ -9,6 +9,6 @@ import { HintoSdkService } from 'src/services/hinto-sdk.service';
 @Module({
   imports: [DatabaseModule, HintoSdkModule],
   controllers: [OwnersController],
-  providers: [OwnersDaoService, ...ownersDatabaseProviders, HintoSdkService],
+  providers: [HintoSdkService, OwnersDaoService, ...ownersDatabaseProviders],
 })
 export class OwnersModule {}

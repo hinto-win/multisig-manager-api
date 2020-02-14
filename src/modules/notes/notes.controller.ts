@@ -19,8 +19,8 @@ import { utils } from 'ethers';
 @Controller('notes')
 export class NotesController {
   constructor(
-    private readonly notesDaoService: NotesDaoService,
     private readonly hintoSdkService: HintoSdkService,
+    private readonly notesDaoService: NotesDaoService,
   ) {}
 
   @Post('describe-transaction')

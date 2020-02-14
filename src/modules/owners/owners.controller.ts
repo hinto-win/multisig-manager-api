@@ -17,8 +17,8 @@ import { OwnersDaoService } from './owners.dao.service';
 @Controller('owners')
 export class OwnersController {
   constructor(
-    private readonly ownersDaoService: OwnersDaoService,
     private readonly hintoSdkService: HintoMultisigSdk,
+    private readonly ownersDaoService: OwnersDaoService,
   ) {}
 
   @Post('set-email')
