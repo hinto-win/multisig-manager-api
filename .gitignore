@@ -1,0 +1,8 @@
+# project artifacts
+node_modules
+dist
+yarn-error.log
+
+# docker volumes data
+data
+redis-data

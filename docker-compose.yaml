@@ -1,0 +1,27 @@
+version: '3'
+services:
+  api:
+    build: .
+    depends_on:
+      - mongoDB
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'
+    networks:
+      - backend
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - .env
+  mongoDB:
+    image: mongo
+    expose:
+      - '27017'
+    networks:
+      - backend
+    volumes:
+      - './data:/data/db'
+networks:
+  backend:
