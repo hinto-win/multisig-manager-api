@@ -7,28 +7,28 @@ import {
   Get,
   Param,
 } from '@nestjs/common';
-import { HintoMultisigSdk } from 'hinto-contracts-sdk';
 import { SetEmailDto } from './owners.dtos';
 
 import { utils } from 'ethers';
 import { SHA256, enc } from 'crypto-js';
 import { OwnersDaoService } from './owners.dao.service';
+import { HintoSdkService } from 'src/services/hinto-sdk.service';
 
 @Controller('owners')
 export class OwnersController {
   constructor(
-    private readonly hintoSdkService: HintoMultisigSdk,
+    private readonly hintoSdkService: HintoSdkService,
     private readonly ownersDaoService: OwnersDaoService,
   ) {}
 
   @Post('set-email')
   async setEmail(@Body() dto: SetEmailDto) {
     const payload = SHA256(
-      `${this.hintoSdkService.getMultisigAddress()}.${dto.email}`,
+      `${this.hintoSdkService.getInstance().getMultisigAddress()}.${dto.email}`,
     ).toString(enc.Hex);
 
     const signer = utils.recoverAddress(payload, dto.signature);
-    const isOwner = await this.hintoSdkService.isOwner(signer);
+    const isOwner = await this.hintoSdkService.getInstance().isOwner(signer);
 
     if (!isOwner) {
       throw new HttpException(

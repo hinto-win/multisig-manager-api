@@ -7,7 +7,7 @@ import { ownersDatabaseProviders } from './owners.providers';
 import { HintoSdkService } from 'src/services/hinto-sdk.service';
 
 @Module({
-  imports: [DatabaseModule, HintoSdkModule],
+  imports: [HintoSdkModule, DatabaseModule],
   controllers: [OwnersController],
   providers: [HintoSdkService, OwnersDaoService, ...ownersDatabaseProviders],
 })
