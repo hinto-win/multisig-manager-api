@@ -7,7 +7,7 @@ export const ownersDatabaseProviders = [
   {
     provide: NOTE_SCHEMA_TOKEN,
     useFactory: (connection: Connection) =>
-      connection.model('owner', OwnerDatabaseSchema),
+      connection.model('owners', OwnerDatabaseSchema),
     inject: [DATABASE_PROVIDER],
   },
 ];
