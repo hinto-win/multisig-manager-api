@@ -1,13 +1,13 @@
 import { Connection } from 'mongoose';
 
 import { OwnerDatabaseSchema } from './owner.database.schema';
-import { NOTE_SCHEMA_TOKEN, DATABASE_PROVIDER } from '../../utils/constants';
+import { DATABASE_PROVIDER, OWNER_SCHEMA_TOKEN } from '../../utils/constants';
 
 export const ownersDatabaseProviders = [
   {
-    provide: NOTE_SCHEMA_TOKEN,
+    provide: OWNER_SCHEMA_TOKEN,
     useFactory: (connection: Connection) =>
-      connection.model('owners', OwnerDatabaseSchema),
+      connection.model('owner', OwnerDatabaseSchema),
     inject: [DATABASE_PROVIDER],
   },
 ];

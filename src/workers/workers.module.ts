@@ -10,7 +10,7 @@ import { MailerService } from 'src/services/mailer.service';
 
 @Module({
   controllers: [WorkersController],
-  imports: [DatabaseModule, MailerModule, HintoSdkModule],
+  imports: [DatabaseModule, HintoSdkModule, MailerModule],
   providers: [
     OwnersDaoService,
     ...ownersDatabaseProviders,
