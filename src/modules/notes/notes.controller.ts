@@ -79,7 +79,7 @@ export class NotesController {
       return { description: null };
     }
 
-    return { description: note.body };
+    return { description: note.body, submitter: note.submitter };
   }
 
   @Get('descriptions-by-tx-ids/:from/:to')
@@ -100,7 +100,10 @@ export class NotesController {
     let descriptions = {};
 
     notes.map(note => {
-      descriptions[note.transactionID] = note.body;
+      descriptions[note.transactionID] = {
+        description: note.body,
+        submitter: note.submitter,
+      };
     });
 
     return descriptions;

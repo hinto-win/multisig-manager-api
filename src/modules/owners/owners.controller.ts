@@ -49,7 +49,7 @@ export class OwnersController {
     return { message: 'Email set' };
   }
 
-  @Get('get-email:/address')
+  @Get('get-email/:address')
   async getEmail(@Param('address') address: string) {
     if (!utils.isHexString(address)) {
       throw new HttpException(
