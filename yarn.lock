@@ -1610,10 +1610,25 @@ ethereumjs-util@6.2.0, ethereumjs-util@^6.0.0:
     rlp "^2.2.3"
     secp256k1 "^3.0.1"
 
-ethers@4.0.44, ethers@^4.0.40, ethers@^4.0.44:
+ethers@4.0.44, ethers@^4.0.44:
   version "4.0.44"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.44.tgz#f2608cbc0b4d099b7e10a01c0efc3a1037013b4e"
   integrity sha512-kCkMPkpYjBkxzqjcuYUfDY7VHDbf5EXnfRPUOazdqdf59SvXaT+w5lgauxLlk1UjxnAiNfeNS87rkIXnsTaM7Q==
+  dependencies:
+    aes-js "3.0.0"
+    bn.js "^4.4.0"
+    elliptic "6.5.2"
+    hash.js "1.1.3"
+    js-sha3 "0.5.7"
+    scrypt-js "2.0.4"
+    setimmediate "1.0.4"
+    uuid "2.0.1"
+    xmlhttprequest "1.8.0"
+
+ethers@^4.0.40:
+  version "4.0.45"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-4.0.45.tgz#8d4cd764d7c7690836b583d4849203c225eb56e2"
+  integrity sha512-N/Wmc6Mw4pQO+Sss1HnKDCSS6KSCx0luoBMiPNq+1GbOaO3YaZOyplBEhj+NEoYsizZYODtkITg2oecPeNnidQ==
   dependencies:
     aes-js "3.0.0"
     bn.js "^4.4.0"
@@ -2239,7 +2254,7 @@ hash.js@^1.0.0, hash.js@^1.0.3:
 
 "hinto-contracts-sdk@https://github.com/hinto-win/hinto-contracts-sdk":
   version "1.0.0"
-  resolved "https://github.com/hinto-win/hinto-contracts-sdk#53d11669a1db735cc8ff03f13621b80a7740663d"
+  resolved "https://github.com/hinto-win/hinto-contracts-sdk#3e399c83005fef5cf9903e476874769d118396ee"
   dependencies:
     crypto-js "^3.1.9-1"
     ethers "^4.0.40"

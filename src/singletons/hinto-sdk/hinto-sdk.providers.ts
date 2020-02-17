@@ -19,10 +19,10 @@ export const hintoSdkProviders = [
       }
       const privateKey =
         ETHEREUM_PRIVATE_KEY || `0x${randomBytes(32).toString('hex')}`;
-      return new HintoMultisigSdk(
+      return HintoMultisigSdk.initializeWithPrivateKeyAndProviderUrl(
         ETHEREUM_PROVIDER_URL,
-        ETHEREUM_MULTISIG_ADDRESS,
         privateKey,
+        ETHEREUM_MULTISIG_ADDRESS,
       );
     },
   },
