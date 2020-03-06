@@ -23,11 +23,19 @@ export class OwnersController {
 
   @Post('set-email')
   async setEmail(@Body() dto: SetEmailDto) {
-    const payload = SHA256(
+    const payload = `0x${SHA256(
       `${this.hintoSdkService.getInstance().getMultisigAddress()}.${dto.email}`,
-    ).toString(enc.Hex);
+    ).toString(enc.Hex)}`;
 
-    const signer = utils.recoverAddress(payload, dto.signature);
+    if (!utils.isHexString(dto.signature)) {
+      throw new HttpException(
+        'Invalid signature format',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const signer = utils.verifyMessage(payload, dto.signature);
+
     const isOwner = await this.hintoSdkService.getInstance().isOwner(signer);
 
     if (!isOwner) {
@@ -62,7 +70,7 @@ export class OwnersController {
 
     if (!owner) {
       throw new HttpException(
-        'The given address is not an owner',
+        "The given address is not an owner or did not set it's mail",
         HttpStatus.BAD_REQUEST,
       );
     }

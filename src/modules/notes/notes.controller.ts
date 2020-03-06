@@ -25,13 +25,15 @@ export class NotesController {
 
   @Post('describe-transaction')
   async describeTransaction(@Body() dto: DescribeTransactionDto) {
-    const descriptionHash = SHA256(dto.description).toString(enc.Hex);
+    const descriptionHash = `0x${SHA256(dto.description).toString(enc.Hex)}`;
 
-    const address = this.hintoSdkService.getInstance().getMultisigAddress();
+    const address = await this.hintoSdkService
+      .getInstance()
+      .getMultisigAddress();
 
     const payload = `${address}.${dto.transactionID}.${descriptionHash}`;
 
-    const signer = utils.recoverAddress(payload, dto.signature);
+    const signer = utils.verifyMessage(payload, dto.signature);
 
     const isOwner = await this.hintoSdkService.getInstance().isOwner(signer);
 
@@ -69,7 +71,9 @@ export class NotesController {
 
   @Get('description-by-tx-id/:txID')
   async getDescriptionByTxID(@Param('txID') txID: number) {
-    if (!Number.isInteger(txID)) {
+    try {
+      txID = parseInt(txID.toString());
+    } catch (err) {
       throw new HttpException('Invalid param type', HttpStatus.BAD_REQUEST);
     }
 
@@ -87,11 +91,15 @@ export class NotesController {
     @Param('from') from: number,
     @Param('to') to: number,
   ) {
-    if (!Number.isInteger(from)) {
+    try {
+      from = parseInt(from.toString());
+    } catch (err) {
       throw new HttpException('Invalid param type', HttpStatus.BAD_REQUEST);
     }
 
-    if (!Number.isInteger(to)) {
+    try {
+      to = parseInt(to.toString());
+    } catch (err) {
       throw new HttpException('Invalid param type', HttpStatus.BAD_REQUEST);
     }
 
