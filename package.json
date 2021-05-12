@@ -34,7 +34,7 @@
     "hinto-contracts-sdk": "https://github.com/hinto-win/hinto-contracts-sdk",
     "lodash": "^4.17.15",
     "mongoose": "^5.8.12",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.16",
     "redis": "^3.0.2",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
